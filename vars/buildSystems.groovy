@@ -12,10 +12,10 @@ static def reportQualityGate(script, organisation, repository, status, context, 
     def jsonRequest = JsonOutput.toJson(request)
     script.httpRequest(
             acceptType: 'APPLICATION_JSON',
-            authentication: 'supersecret',
+            authentication: 'feb40616d4d730b6c89a9f74aafe93a3e05230fb',
             contentType: 'APPLICATION_JSON',
             httpMode: 'POST',
             requestBody: jsonRequest,
             responseHandle: 'NONE',
-            url: "http://gitea/api/v1/repos/$organisation/$repository/statuses/$currentSha")
+            url: "http://gitrepsrv:3000/api/v1/repos/$organisation/$repository/statuses/$currentSha")
 }
