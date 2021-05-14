@@ -1,5 +1,7 @@
 // Status can be: pending failure error success
 def reportQualityGate(script, organisation, repository, status, context, description) {
+    def GIT_COMMIT_HASH = sh (script: "git log -n 1 --pretty=format:'%H'", returnStdout: true)
+    println "$GIT_COMMIT_HASH"
     def currentSha = getCurrentCommit(script)
 
     def request = [
