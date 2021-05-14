@@ -1,5 +1,5 @@
 // Status can be: pending failure error success
-static def reportQualityGate(script, organisation, repository, status, context, description) {
+def reportQualityGate(script, organisation, repository, status, context, description) {
     def currentSha = getCurrentCommit(script)
 
     def request = [
