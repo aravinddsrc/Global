@@ -19,7 +19,7 @@ def reportQualityGate(script, organisation, repository, status, context, descrip
             url: "http://gitrepsrv:3000/api/v1/repos/$organisation/$repository/statuses/$currentSha")
 }
 
-def getCommitSha(){
+def getCommitSha(script){
     return sh(returnStdout: true, script: 'git rev-parse HEAD')
 }
 
