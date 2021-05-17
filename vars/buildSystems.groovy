@@ -23,11 +23,18 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     println  "${jsonRequestdata}"
     def URLValue=  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     
-    def apidata=""curl --location --request POST "${URLValue}" --header "Authorization : Bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb" --header "Content-Type : application/json " --data-raw  "${jsonRequestdata}"""
-    
-     println  "${apidata}"
-    
-    bat(apidata)
+     http.request(POST) {
+    uri.path = "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
+    body = jsonRequestdata
+    requestContentType = ContentType.JSON
+    auth.basic('aravind.a', 'Arav123')
+
+    response.success = { resp ->
+        println "Success! ${resp.status}"
+    }
+
+    response.failure = { resp ->
+        println "Request failed with status ${resp.status}"
 
  
 }
