@@ -1,12 +1,11 @@
-@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7' )
-import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.RESTClient
-import groovyx.net.http.HttpResponseDecorator
+import groovy.net.http.HTTPBuilder
+import groovy.net.http.RESTClient
+import groovy.net.http.HttpResponseDecorator
 
 // ContentType static import
-import static groovyx.net.http.ContentType.*
+import static groovy.net.http.ContentType.*
 // Method static import
-import static groovyx.net.http.Method.*
+import static groovy.net.http.Method.*
 import groovy.json.*
 
 
