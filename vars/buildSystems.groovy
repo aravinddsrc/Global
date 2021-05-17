@@ -1,6 +1,7 @@
 def reportQualityGate(script, Organisation, repository, status, context, description) {
-    println build.environment.get("GIT_URL")
+   
     println   scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
+    println   sh(script: 'git rev-parse --short=7 HEAD', returnStdout: true).trim()
     println  "${description}"
     println  "${context}"
     println   "${status}"
