@@ -11,7 +11,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
             context: context,
             description: description,
             state: status,
-            target_url: script.env.RUN_DISPLAY_URL
+            target_url: 'http://192.168.4.60:8080'
     ]
 
     def jsonRequestdata = JsonOutput.toJson(request)
