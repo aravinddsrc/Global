@@ -1,5 +1,5 @@
 def reportQualityGate(script, organisation, repository, status, context, description) {
-    def currentSha  = sh(returnStdout: true, script: "git log -n 1 --pretty=format:'%h'").trim()
+    def currentSha  = getCurrentCommit(script)
     
     def request = [
             context: context,
@@ -17,5 +17,9 @@ def reportQualityGate(script, organisation, repository, status, context, descrip
             requestBody: jsonRequestdata,
             responseHandle: 'NONE',
             url: "http://gitrepsrv:3000/api/v1/repos/$organisation/$repository/statuses/$currentSha")
+}
+
+def getCommitSha(){
+    return sh(returnStdout: true, script: 'git rev-parse HEAD')
 }
 
