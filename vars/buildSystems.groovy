@@ -1,5 +1,5 @@
 def reportQualityGate(script, Organisation, repository, status, context, description) {
-    
+    def currentSha="${script}"
     println   scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
     println  "${description}"
     println  "${context}"
