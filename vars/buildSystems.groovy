@@ -1,5 +1,5 @@
 def reportQualityGate(script, organisation, repository, status, context, description) {
-    def currentSha = getCurrentCommit(script)
+    def currentSha = sh(returnStdout: true, script: 'git rev-parse HEAD')
 
     def request = [
             context: context,
