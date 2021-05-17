@@ -1,8 +1,8 @@
 package org.jenkinsci.plugins.workflow.cps;
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.ContentType.*
-import groovyx.net.http.ContentType
-import static groovyx.net.http.Method.*
+import groovyx.net.http.HTTPBuilder.*
+import groovyx.net.http.ContentType.*
+import groovyx.net.http.ContentType.*
+import groovyx.net.http.Method.*
 import groovy.json.*
 
 
