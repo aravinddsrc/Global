@@ -17,6 +17,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     ]
 
     def jsonRequestdata = JsonOutput.toJson(request)
+    println  "${jsonRequestdata}"
     script.httpRequest(
             acceptType: 'APPLICATION_JSON',
             authentication: 'feb40616d4d730b6c89a9f74aafe93a3e05230fb',
