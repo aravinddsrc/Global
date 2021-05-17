@@ -1,4 +1,5 @@
 import groovy.json.*
+import groovyx.net.http.ContentType
 
 def reportQualityGate(script, Organisation, repository, status, context, description) {
     def currentSha="${script}"
@@ -20,14 +21,31 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     println  "${jsonRequestdata}"
     println  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
 
-var client = new RestClient("http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}");
-client.Timeout = -1;
-var request = new RestRequest(Method.POST);
-request.AddHeader("Authorization", "Bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb");
-request.AddHeader("Content-Type", "application/json");
-request.AddParameter("application/json", "{\r\n  \"state\": \"success\",\r\n  \"target_url\": \"http://192.168.4.60:8080\",\r\n  \"description\": \"SonarQube Failed\",\r\n  \"context\": \"continuous-integration/automation\"\r\n}",  ParameterType.RequestBody);
-IRestResponse response = client.Execute(request);
-Console.WriteLine(response.Content);
+    httpRequest(
+            acceptType: 'APPLICATION_JSON',
+            authentication: 'feb40616d4d730b6c89a9f74aafe93a3e05230fb',
+            contentTypes: 'APPLICATION_JSON',
+            requestMethod : 'POST',
+            requestBody: jsonRequest,
+            responseHandle: 'NONE',
+            url: "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}")
+   
+    
+    
+    http.request(POST) {
+    uri.path = "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
+    body = jsonRequestdata
+    requestContentType = ContentType.JSON
+    http.auth.basic('aravind.a', 'Arav123')
+
+    response.success = { resp ->
+        println "Success! ${resp.status}"
+    }
+
+    response.failure = { resp ->
+        println "Request failed with status ${resp.status}"
+    }
+}
 }
 
 
