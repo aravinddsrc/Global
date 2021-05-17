@@ -24,7 +24,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
             httpMode: 'POST',
             requestBody: jsonRequestdata,
             responseHandle: 'NONE',
-            url: "http://gitrepsrv:3000/api/v1/repos/$organisation/$repository/statuses/$currentSha")
+            url: "http://gitrepsrv:3000/api/v1/repos/$Organisation/$repository/statuses/$currentSha")
 }
 
 def getCommitSha(script){
