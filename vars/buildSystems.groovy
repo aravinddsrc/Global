@@ -20,12 +20,13 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     println  "${jsonRequestdata}"
     println  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     script.httpRequest(
-            acceptType: 'APPLICATION_JSON',
+            acceptType: 'Content-Type',
             authentication: 'feb40616d4d730b6c89a9f74aafe93a3e05230fb',
-            contentType: 'APPLICATION_JSON',
+            contentType: 'application/json',
             httpMode: 'POST',
             requestBody: jsonRequestdata,
             responseHandle: 'NONE',
             url: "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}")
 }
+
 
