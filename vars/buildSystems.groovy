@@ -24,17 +24,25 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     println  "${jsonRequestdata}"
     println  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
 
+    def http = new HTTPBuilder("http://gitrepsrv:3000")
+
+        http.request(POST, JSON) { req ->
+            uri.path = "/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
+            body = jsonRequestdata
+            headers.'Authorization' = "token feb40616d4d730b6c89a9f74aafe93a3e05230fb"
+            headers.'Accept' = 'application/vnd.github.v3.text-match+json'
+            headers.'User-Agent' = 'Mozilla/5.0'
+            response.success = { resp, json ->
+                println "Got response: ${resp.statusLine}"
+                println "Content-Type: ${resp.headers.'Content-Type'}"
+                println json
+            }
+            response.failure = { resp, json ->
+                print json
+            }
     
     
-    @NonCPS
-    def posts = configure {
-    request.uri ="http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
-    request.contentType = 'application/json'
-    request.body = jsonRequestdata
-    request.headers= 'Bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb'
-}.post()
-    
-    
+   
  
 }
 
