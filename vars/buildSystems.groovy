@@ -22,23 +22,12 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     def jsonRequestdata = JsonOutput.toJson(request)
     println  "${jsonRequestdata}"
     def URLValue=  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
+  
     
-    def http.request(POST) {
-    uri.path = "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
-    body = jsonRequestdata
-    requestContentType = ContentType.JSON
-    auth.basic('aravind.a', 'Arav123')
-
-    response.success = { resp ->
-        println "Success! ${resp.status}"
-    }
-
-    response.failure = { resp ->
-        println "Request failed with status ${resp.status}"
-
-    }
- 
-}
+   def response =  httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON',
+                         customHeaders  : [[name: "authorization" , value : "feb40616d4d730b6c89a9f74aafe93a3e05230fb"],[name: 'state' , value: 'success'],[name: 'target_url' , value: 'http://192.168.4.60:8080'],[name: 'description' , value: 'SonarQube Passed'],[name: 'context' , value: 'continuous-integration/automation']],
+                         httpMode: 'POST', timeout: 900, responseHandle: 'NONE', url: "${URLValue}")
+                               
 }
 
 
