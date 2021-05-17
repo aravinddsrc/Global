@@ -28,11 +28,11 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     --header 'Content-Type: application/json' \
     --header 'Cookie: lang=en-US; i_like_gitea=065687f7d2e19dc7; _csrf=Tpb0WeN8LRGzgVLkxEgarI7ZZd46MTYyMTIzMjUxNjI1MTU2MzMwMA' \
     --data-raw '{
-    'tate': "success",
-    'target_url': 'http://192.168.4.60:8080',
-    'description': 'SonarQube Failed',
-    'context': 'continuous-integration/automation'
-    }'")
+     "state": "failure",
+     "target_url": "http://192.168.4.60:8080",
+     "description": "SonarQube Failed",
+     "context": "continuous-integration/automation"
+     }'")
 
  
 }
