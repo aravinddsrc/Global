@@ -27,12 +27,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     --header 'Authorization: Bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb' \
     --header 'Content-Type: application/json' \
     --header 'Cookie: lang=en-US; i_like_gitea=065687f7d2e19dc7; _csrf=Tpb0WeN8LRGzgVLkxEgarI7ZZd46MTYyMTIzMjUxNjI1MTU2MzMwMA' \
-    --data-raw '{
-    "state": "success",
-    "target_url": "http://192.168.4.60:8080",
-    "description": "SonarQube success",
-    "context": "continuous-integration/automation"
-    }'"
+    --data-raw '{"state": "success","target_url": "http://192.168.4.60:8080","description": "SonarQube success","context": "continuous-integration/automation"}'"
     
      println  "${apidata}"
     
