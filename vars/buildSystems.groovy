@@ -1,6 +1,8 @@
-@Grab('io.github.http-builder-ng:http-builder-ng-okhttp:0.14.2')
-import static groovy.json.JsonOutput.toJson
-import static groovyx.net.http.HttpBuilder.configure
+@Grab('org.codehaus.groovy.modules.http-builder:http-builder:0.7.1')
+
+import groovyx.net.http.HTTPBuilder
+import static groovyx.net.http.ContentType.*
+import static groovyx.net.http.Method.*
 import groovy.json.*
 
 
