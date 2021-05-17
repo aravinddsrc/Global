@@ -1,5 +1,5 @@
 def reportQualityGate(script, organisation, repository, status, context, description) {
-    def currentSha = sh(returnStdout: true, script: 'git rev-parse HEAD')
+    def currentSha = commitHashForBuild(currentBuild.rawBuild)
 
     def request = [
             context: context,
@@ -17,4 +17,15 @@ def reportQualityGate(script, organisation, repository, status, context, descrip
             requestBody: jsonRequestdata,
             responseHandle: 'NONE',
             url: "http://gitrepsrv:3000/api/v1/repos/$organisation/$repository/statuses/$currentSha")
+}
+
+def commitHashForBuild(build) {
+    def scmAction = build?.actions.find { action -> action instanceof jenkins.scm.api.SCMRevisionAction }
+    if (scmAction?.revision instanceof org.jenkinsci.plugins.github_branch_source.PullRequestSCMRevision) {
+        return scmAction?.revision?.pullHash
+    } else if (scmAction?.revision instanceof jenkins.plugins.git.AbstractGitSCMSource$SCMRevisionImpl) {
+        return scmAction?.revision?.hash
+    } else {
+        error("Build doesn't contain revision information. Do you run this from GitHub organization folder?")
+    }
 }
