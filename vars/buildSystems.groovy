@@ -1,5 +1,6 @@
+import groovyx.net.http.ContentType.*
 import groovy.json.*
-import groovyx.net.http.ContentType
+
 
 def reportQualityGate(script, Organisation, repository, status, context, description) {
     def currentSha="${script}"
@@ -26,7 +27,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     uri.path = "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     body = jsonRequestdata
     requestContentType = ContentType.JSON
-    http.auth.basic('aravind.a', 'Arav123')
+    auth.basic('aravind.a', 'Arav123')
 
     response.success = { resp ->
         println "Success! ${resp.status}"
