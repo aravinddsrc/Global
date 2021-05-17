@@ -1,3 +1,5 @@
+import groovy.json.*
+
 def reportQualityGate(script, Organisation, repository, status, context, description) {
     def currentSha="${script}"
     println  "${description}"
