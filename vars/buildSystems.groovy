@@ -1,5 +1,4 @@
 import groovy.json.*
-import groovyx.net.http.ContentType.*
 
 def reportQualityGate(script, Organisation, repository, status, context, description) {
     def currentSha="${script}"
