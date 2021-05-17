@@ -25,8 +25,8 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
   
     
    def response =  httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON',
-                         customHeaders  : [[name: 'authorization' , value: 'bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb'],[name: 'state' , value: 'success'], [name: 'target_url' , value: 'http://192.168.4.60:8080'],[name: 'description' , value: 'SonarQube Passed'],[name: 'context' , value: 'continuous-integration/automation']],
-                         httpMode: 'POST', timeout: 900, responseHandle: 'NONE', url: "${URLValue}")
+                         customHeaders  : [[name: 'authorization' , value: 'bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb']],
+                         httpMode: 'POST', timeout: 900, responseHandle: 'NONE', url: "${URLValue}" , requestBody: "${jsonRequestdata}"  )
                                
 }
 
