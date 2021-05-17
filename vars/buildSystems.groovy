@@ -1,4 +1,10 @@
-def reportQualityGate(script, organisation, repository, status, context, description) {
+def reportQualityGate(script, repository, repository, status, context, description) {
+    echo ${description}
+    echo ${context}
+    echo ${status}
+    echo ${repository}
+    echo ${repository}
+    echo ${script}
     def currentSha  = getCommitSha(script)
     
     def request = [
