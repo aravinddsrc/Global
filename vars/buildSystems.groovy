@@ -23,7 +23,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     println  "${jsonRequestdata}"
     def URLValue=  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     
-     http.request(POST) {
+    def http.request(POST) {
     uri.path = "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     body = jsonRequestdata
     requestContentType = ContentType.JSON
