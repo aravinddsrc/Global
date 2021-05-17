@@ -26,7 +26,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
 
     
     
-    
+    @NonCPS
     def posts = configure {
     request.uri.path ="http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     request.contentType = 'application/json'
