@@ -1,4 +1,4 @@
-static def reportQualityGate(script, organisation, repository, status, context, description) {
+def reportQualityGate(script, organisation, repository, status, context, description) {
     def currentSha = getCurrentCommit(script)
 
     def request = [
