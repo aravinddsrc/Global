@@ -1,13 +1,11 @@
 def reportQualityGate(script, Organisation, repository, status, context, description) {
     def currentSha="${script}"
-    println   scm.getUserRemoteConfigs()[0].getUrl().tokenize('/').last().split("\\.")[0]
     println  "${description}"
     println  "${context}"
     println   "${status}"
     println   "${repository}"
     println   "${Organisation}"
     println   "${script}"
-    def currentSha  = getCommitSha(script)
     
     def request = [
             context: context,
