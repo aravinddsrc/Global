@@ -31,7 +31,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     request.uri ="http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
     request.contentType = 'application/json'
     request.body = jsonRequestdata
-    request.auth.basic'aravind.a', 'Arav123'
+    request.headers= 'Bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb'
 }.post()
     
     
