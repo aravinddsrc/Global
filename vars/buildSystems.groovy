@@ -1,4 +1,6 @@
-import groovy.net.http.ContentType.*
+@Grab('io.github.http-builder-ng:http-builder-ng-okhttp:0.14.2')
+import static groovy.json.JsonOutput.toJson
+import static groovyx.net.http.HttpBuilder.configure
 import groovy.json.*
 
 
@@ -23,20 +25,17 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     println  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
 
     
-    http.request(POST) {
-    uri.path = "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
-    body = jsonRequestdata
-    requestContentType = ContentType.JSON
-    auth.basic('aravind.a', 'Arav123')
-
-    response.success = { resp ->
-        println "Success! ${resp.status}"
-    }
-
-    response.failure = { resp ->
-        println "Request failed with status ${resp.status}"
-    }
-}
+    
+    
+    def posts = configure {
+    request.uri.path ="http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
+    request.contentType = 'application/json'
+    request.body = jsonRequestdata
+    request.auth.basic('aravind.a', 'Arav123')
+}.post()
+    
+    
+ 
 }
 
 
