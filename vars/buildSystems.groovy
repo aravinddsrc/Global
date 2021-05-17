@@ -1,12 +1,10 @@
+import groovy.json.*
 import groovy.net.http.HTTPBuilder
 import groovy.net.http.RESTClient
 import groovy.net.http.HttpResponseDecorator
-
-// ContentType static import
 import static groovy.net.http.ContentType.*
-// Method static import
 import static groovy.net.http.Method.*
-import groovy.json.*
+
 
 
 def reportQualityGate(script, Organisation, repository, status, context, description) {
