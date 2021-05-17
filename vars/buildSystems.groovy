@@ -1,4 +1,4 @@
-import groovyx.net.http.ContentType
+import groovy.net.http.ContentType.*
 import groovy.json.*
 
 
