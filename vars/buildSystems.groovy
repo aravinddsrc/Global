@@ -1,9 +1,5 @@
 import groovy.json.*
-import groovy.net.http.HTTPBuilder
-import groovy.net.http.RESTClient
-import groovy.net.http.HttpResponseDecorator
-import static groovy.net.http.ContentType.*
-import static groovy.net.http.Method.*
+
 
 
 
@@ -26,26 +22,18 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     def jsonRequestdata = JsonOutput.toJson(request)
     println  "${jsonRequestdata}"
     println  "http://gitrepsrv:3000/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
-
-    def http = new HTTPBuilder("http://gitrepsrv:3000")
-
-        http.request(POST, JSON) { req ->
-            uri.path = "/api/v1/repos/${Organisation}/${repository}/statuses/${currentSha}"
-            body = jsonRequestdata
-            headers.'Authorization' = "token feb40616d4d730b6c89a9f74aafe93a3e05230fb"
-            headers.'Accept' = 'application/vnd.github.v3.text-match+json'
-            headers.'User-Agent' = 'Mozilla/5.0'
-            response.success = { resp, json ->
-                println "Got response: ${resp.statusLine}"
-                println "Content-Type: ${resp.headers.'Content-Type'}"
-                println json
-            }
-            response.failure = { resp, json ->
-                print json
-            }
     
-    
-        }
+    bat('curl --location --request POST 'http://gitrepsrv:3000/api/v1/repos/aravind.a/GitSync/statuses/444b84683bd56fb3f9755c1d344802c653a9d91f' \
+    --header 'Authorization: Bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb' \
+    --header 'Content-Type: application/json' \
+    --header 'Cookie: lang=en-US; i_like_gitea=065687f7d2e19dc7; _csrf=Tpb0WeN8LRGzgVLkxEgarI7ZZd46MTYyMTIzMjUxNjI1MTU2MzMwMA' \
+    --data-raw '{
+     "state": "success",
+     "target_url": "http://192.168.4.60:8080",
+    "description": "SonarQube Failed",
+    "context": "continuous-integration/automation"
+    }'')
+
  
 }
 
