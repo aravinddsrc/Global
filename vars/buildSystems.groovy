@@ -1,6 +1,6 @@
 import groovy.json.*
 
-
+ //url: "${URLValue}"
 
 
 def reportQualityGate(script, Organisation, repository, status, context, description) {
@@ -26,7 +26,7 @@ def reportQualityGate(script, Organisation, repository, status, context, descrip
     
    def response =  httpRequest(acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON',
                          customHeaders  : [[name: 'authorization' , value: 'bearer feb40616d4d730b6c89a9f74aafe93a3e05230fb']],
-                         httpMode: 'POST', timeout: 900, responseHandle: 'NONE', url: "${URLValue}" , requestBody: "${jsonRequestdata}"  )
+                         httpMode: 'POST', timeout: 900, responseHandle: 'NONE' , requestBody: "${jsonRequestdata}"  )
                                
 }
 
